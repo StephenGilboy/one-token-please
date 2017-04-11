@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+﻿#!/usr/bin/env bash
 if [ -z ${TRAVIS_BUILD_NUMBER+x} ]; then 
   TRAVIS_BUILD_NUMBER=1
 fi
