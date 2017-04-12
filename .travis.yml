@@ -11,3 +11,10 @@ before_script:
   - chmod a+x ./build.sh
 script:
   - ./build.sh
+deploy:
+  provider: releases
+  file_glob: true
+  file: ./build/Release/*.zip
+  skip_cleanup: true
+  on:
+    tags: true
