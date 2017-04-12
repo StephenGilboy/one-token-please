@@ -19,11 +19,14 @@ if hash dotnet 2>/dev/null; then
     dotnet publish $PROJECT -c $CONFIG -r $OSX_ENV --output $OSX_PATH
 else 
     echo "dotnet command not found"
+    exit 1
 fi
 
 if hash zip 2>/dev/null; then
-    zip -r $BUILD_PATH/$WIN_FILENAME $WIN_PATH
-    zip -r $BUILD_PATH/$OSX_FILENAME $OSX_PATH
+    cd $BUILD_PATH
+    zip -r ./$WIN_FILENAME $WIN_ENV
+    zip -r ./$OSX_FILENAME $OSX_ENV
 else
   echo "zip command not found"
+  exit 1
 fi
