@@ -21,3 +21,4 @@ A cross platform .NET Core CLI app to get an Auth token. Right now it just gets 
 `-r` Resource. https://yourcompany.onmicrosoft.com/YourApplication
 
 `-a` Authority. https://login.microsoftonline.com/yourcompany.onmicrosoft.com
+
