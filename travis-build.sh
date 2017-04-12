@@ -8,8 +8,9 @@ OSX_ENV=osx.10.11-x64
 BUILD_PATH=$TRAVIS_BUILD_DIR/build/$CONFIG
 WIN_PATH="$BUILD_PATH/$WIN_ENV/"
 OSX_PATH="$BUILD_PATH/$OSX_ENV/"
-WIN_FILENAME="one-token-please_$RELEASE_$WIN_ENV.zip"
-OSX_FILENAME="one-token-please_$RELEASE_$OSX_ENV.zip"
+FILENAME_PREFIX="one-token-please"
+WIN_FILENAME="${FILENAME_PREFIX}_${RELEASE}_${WIN_ENV}.zip"
+OSX_FILENAME="${FILENAME_PREFIX}_${RELEASE}_${OSX_ENV}.zip"
 
 
 if hash dotnet 2>/dev/null; then
