@@ -4,9 +4,9 @@ sudo: required
 mono: none
 dotnet: 1.0.1
 before_script:
-- chmod a+x ./build.sh
+- chmod a+x ./travis-build.sh
 script:
-- ./build.sh
+- ./travis-build.sh
 deploy:
   skip_cleanup: true
   overwrite: true
@@ -14,7 +14,7 @@ deploy:
   api_key:
     secure: KjFRVPHvvH1JdxtK0uidh30S3EYOOxWquKKI3uMdZRkdRx04VwsiiyJmSHrq4NHcYI2gEwOFhspRyenl/sVFCH1srOU6gyVoZtY852ErwGBd92a0yDdYKtVEJGB6xGq4mL7MfJNJujWI6O0ytOR9lVr2Ac/HgNC02C+e0eZodQC4qvQI/Q9q14VAzRt6HTunYTAnmQBdTT6so2X7xrU/kJ2xuReOjfx/RLHxNmezCV13Q/tJsysXsB5d6ugQcDgumv15Jsbm/YRDy8/vy8zNyWEHPPEXhGQYE9UmyQKBxSFL3eCE609vwfoLqg6pb+0qmvLjhtGslqPnVYftCxKodAeGPht0NgDmO/TnM7QOefqx8HtVaVuyUlCvZzmnl1zGQLt1LwmTZBzjchYXK1QHcdqH6DqC2mePL7MQcIdc2FdhvfH/qalzA+ONRGRvseigLv3J7trbqrc+O3vpcxK0yepeG5LES5guv6d7l8XNmrb3OtgwOtjTNawL+AWVTFc392XiYy7j0ijr952Cxt3vCcJiObcCTy2DFmAO8A7mVgm2NJYTflTQUzoc75XoDL2/M1+NwnmD2ArQ4r4rbTmJxg6O4n+PzlkUCNrQEHxm+uAmyfHod2OblpbCF/CANnD01zWFyGaXwIZA9GxSH8i/K8gnf4AmDio9n2VvAc0RYFQ=
   file_blob: true
-  file: ./build/Release/*.zip
+  file: $TRAVIS_BUILD_DIR/build/Release/*.zip
   on:
     repo: StephenGilboy/one-token-please
     tags: true
