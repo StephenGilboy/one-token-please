@@ -9,7 +9,7 @@ A cross platform .NET Core CLI app to get an Auth token. Right now it just gets 
 * `dotnet build`
 * `cd bin/Debug/netcoreapp1.1/` 
 * `dotnet one-token-please.dll -s aad -c <ClientId> -k <appKey> -r <resource> -a <authority>`
-
+* Releases coming soon
 
 ## Parameters
 `-s` Auth Service. Defaults to 'aad' which is Azure Active Directory
