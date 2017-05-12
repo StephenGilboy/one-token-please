@@ -1,5 +1,5 @@
 ﻿# one-token-please
-A cross platform .NET Core CLI app to get an Auth token. Right now it just gets one from Azure Active Directory using an application key
+A cross platform .NET Core CLI app to get an Auth token. Right now it just gets one from Azure Active Directory using an application key.
 
 [![Build Status](https://travis-ci.org/StephenGilboy/one-token-please.svg?branch=master)](https://travis-ci.org/StephenGilboy/one-token-please)
 
