@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.CommandLineUtils;
 
 namespace OneTokenPlease
@@ -37,14 +38,22 @@ namespace OneTokenPlease
       authority = cli.Option("-a |--authority <authority>",
                 "If aad (https://login.microsoftonline.com/yourcompany.onmicrosoft.com",
                  CommandOptionType.SingleValue);
-
+      
       cli.OnExecute(() => Execute());
-
       cli.Execute(args);
     }
 
     static int Execute() {
       IAuthService authService;
+      
+      var validationErrors = Validate();
+      if (validationErrors.Count > 0) {
+        Console.WriteLine("One or more errors occured");
+        foreach(var err in validationErrors) {
+          Console.WriteLine(err);
+        }
+        return 1;
+      }
 
       // Get the Auth Service 
       var authServiceResult = GetAuthService();
@@ -56,10 +65,16 @@ namespace OneTokenPlease
       }
 
       var authCreds = new AuthServerCreds(authority.Value(), resource.Value(), clientId.Value(), appKey.Value());
-      var token = authService.Auth(authCreds);
-      token.Wait();
-      Console.WriteLine(token.Result);
-      return 0;
+      try {
+        var token = authService.Auth(authCreds);
+        token.Wait();
+        Console.WriteLine(token.Result);
+        return 0;
+      } catch(Exception e) {
+        Console.WriteLine(e.Message);
+        return 1;
+      }
+      
     }
 
     /// <summary>
@@ -91,6 +106,26 @@ namespace OneTokenPlease
         authService = new AzureActiveDirectoryAuthService();
 			}
       return new Tuple<bool, IAuthService>(hasError, authService);
+    }
+
+    static List<string> Validate() {
+      var errors = new List<string>();
+      if (service.HasValue() && service.Value() != "aad") {
+        errors.Add("Invalid Service Option. aad is the only valid option.");
+      }
+      if(!clientId.HasValue()) {
+        errors.Add("clientId is required");
+      }
+      if(!appKey.HasValue()) {
+        errors.Add("key is required.");
+      }
+      if(!resource.HasValue()) {
+        errors.Add("resource is required.");
+      }
+      if(!authority.HasValue()) {
+        errors.Add("authority is required.");
+      }
+      return errors;
     }
   }
 }
