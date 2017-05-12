@@ -5,11 +5,9 @@ A cross platform .NET Core CLI app to get an Auth token. Right now it just gets 
 
 ## How to use it
 
-* Install Dotnet Core, if you haven't already. https://www.microsoft.com/net/core
-* `dotnet build`
-* `cd bin/Debug/netcoreapp1.1/` 
-* `dotnet one-token-please.dll -s aad -c <ClientId> -k <appKey> -r <resource> -a <authority>`
-* Releases coming soon
+* If you're on OSX you'll need to install the pre-requisites for dotnet core. https://www.microsoft.com/net/core#macos 
+* Download the latest release for your system https://github.com/StephenGilboy/one-token-please/releases (Note: Its 20MB because it contains the full .NET Framework so you don't need to install it)
+* Run it providing the parameters listed below
 
 ## Parameters
 `-s` Auth Service. Defaults to 'aad' which is Azure Active Directory

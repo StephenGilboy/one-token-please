@@ -11,7 +11,7 @@ namespace OneTokenPlease.AuthServices
 
       AuthenticationResult result = 
         await authContext.AcquireTokenAsync(authServerCreds.Resource, clientCreds);
-      return $"Bearer {result.AccessToken}";
+      return result.AccessToken;
     }
   }
 }
